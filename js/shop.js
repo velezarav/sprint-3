@@ -64,19 +64,37 @@ var cart = [];
 var total = 0;
 
 // Exercise 1
-function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
+function buy(id) {
+    for (let product in products) {
+        for (let propiedad in product) {
+            if (Object.keys(propiedad) === 'id') {
+                if (Object.values(propiedad) === id) {
+                    cartList.push(product);
+                }
+            }
+        }
+    }
 }
 
 // Exercise 2
 function cleanCart() {
-
+    cartList = [];
 }
 
 // Exercise 3
+// Calculate total price of the cart using the "cartList" array
 function calculateTotal() {
-    // Calculate total price of the cart using the "cartList" array
+    let totalCompra = 0;
+    for (let product in cartList) {
+        for (let propiedad in product) {
+            if (Object.keys(propiedad) === 'price') {
+                let precioProducto = Object.values(propiedad);
+                totalCompra += precioProducto;
+            }
+        }
+    }
 }
 
 // Exercise 4
