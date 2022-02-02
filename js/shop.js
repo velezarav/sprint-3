@@ -67,14 +67,10 @@ var total = 0;
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
 function buy(id) {
-    for (let product in products) {
-        for (let propiedad in product) {
-            if (Object.keys(propiedad) === 'id') {
-                if (Object.values(propiedad) === id) {
-                    cartList.push(product);
-                }
-            }
-        }
+    for (let product of products) {
+        if (product.id === id) {
+            cartList.push(product);
+        } 
     }
 }
 
@@ -87,20 +83,42 @@ function cleanCart() {
 // Calculate total price of the cart using the "cartList" array
 function calculateTotal() {
     let totalCompra = 0;
-    for (let product in cartList) {
-        for (let propiedad in product) {
-            if (Object.keys(propiedad) === 'price') {
-                let precioProducto = Object.values(propiedad);
-                totalCompra += precioProducto;
-            }
-        }
+    for (let product of cartList) {
+        let priceProduct = product.price;
+        totalCompra += priceProduct;
     }
+    return totalCompra;
 }
 
 // Exercise 4
-function generateCart() {
+function generateCart(cartlist) {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+    cart = [];
+    for (let product of cartList) {
+        let idProduct = product.id;
+        if (cart.length !== 0) {
+            let encontrado = false;
+            for (let productCart of cart) {
+                if (productCart.id === product.id) {
+                    encontrado = true;
+                    productCart.quantity++;
+                    product.subtotal = product.quantity * product.price;
+                    break;
+                }
+            } 
+            if (encontrado === false) {
+                product.quantity = 1;
+                cart.push(product);
+                product.subtotal = product.quantity * product.price;
+            }
+        } else {
+            product.quantity = 1;
+            cart.push(product);
+            product.subtotal = product.quantity * product.price;
+        }
+    }
+    return cart;
 }
 
 // Exercise 5
