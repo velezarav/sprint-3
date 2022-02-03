@@ -115,8 +115,27 @@ function generateCart(cartlist) {
 }
 
 // Exercise 5
-function applyPromotionsCart() {
+function applyPromotionsCart(cart) {
     // Apply promotions to each item in the array "cart"
+
+    for (let product of cart) {
+        if (product.id === 1 && product.quantity >= 3) {
+            product.subtotalWithDiscount = product.quantity * 10;
+        } else if (product.id === 3 && product.quantity >= 10) {
+            product.subtotalWithDiscount = ((product.subtotal * 2) / 3);
+        }
+    }
+
+    return cart;
+
+    // in cart iterar y encontrar id 1
+    // si la cantidad es igual o mayor a 3 => agregar subtotalWithDiscount: 10 * this.quantity
+
+    // in cart iterar y encontrar id 3
+    // si la cantidad es igual o mayor a 10 => subtotalWithDiscount: (this.quantity * 2) / 3
+
+
+
 }
 
 
