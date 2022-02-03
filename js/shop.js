@@ -64,13 +64,13 @@ var cart = [];
 var total = 0;
 
 // Exercise 1
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
+// 1. Loop for to the array products to get the item to add to cart
+// 2. Add found product to the cartList array
 function buy(id) {
     for (let product of products) {
         if (product.id === id) {
             cartList.push(product);
-        } 
+        }
     }
 }
 
@@ -96,23 +96,16 @@ function generateCart(cartlist) {
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
     cart = [];
     for (let product of cartList) {
-        let idProduct = product.id;
-        if (cart.length !== 0) {
-            let encontrado = false;
-            for (let productCart of cart) {
-                if (productCart.id === product.id) {
-                    encontrado = true;
-                    productCart.quantity++;
-                    product.subtotal = product.quantity * product.price;
-                    break;
-                }
-            } 
-            if (encontrado === false) {
-                product.quantity = 1;
-                cart.push(product);
+        let encontrado = false;
+        for (let productCart of cart) {
+            if (productCart.id === product.id) {
+                encontrado = true;
+                productCart.quantity++;
                 product.subtotal = product.quantity * product.price;
+                break;
             }
-        } else {
+        }
+        if (encontrado === false) {
             product.quantity = 1;
             cart.push(product);
             product.subtotal = product.quantity * product.price;
