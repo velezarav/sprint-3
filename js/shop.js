@@ -117,25 +117,15 @@ function generateCart(cartlist) {
 // Exercise 5
 function applyPromotionsCart(cart) {
     // Apply promotions to each item in the array "cart"
-
     for (let product of cart) {
         if (product.id === 1 && product.quantity >= 3) {
             product.subtotalWithDiscount = product.quantity * 10;
         } else if (product.id === 3 && product.quantity >= 10) {
-            product.subtotalWithDiscount = ((product.subtotal * 2) / 3);
+            let descuento = ((product.subtotal * 2) / 3).toFixed(2);
+            product.subtotalWithDiscount = parseFloat(descuento);
         }
     }
-
     return cart;
-
-    // in cart iterar y encontrar id 1
-    // si la cantidad es igual o mayor a 3 => agregar subtotalWithDiscount: 10 * this.quantity
-
-    // in cart iterar y encontrar id 3
-    // si la cantidad es igual o mayor a 10 => subtotalWithDiscount: (this.quantity * 2) / 3
-
-
-
 }
 
 
@@ -146,15 +136,46 @@ function addToCart(id) {
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+    for (let product of products) {
+        if (product.id === id) {
+            let encontrado = false;
+            for (let productCart of cart) {
+                if (productCart.id === product.id) {
+                    encontrado = true;
+                    productCart.quantity++;
+                    product.subtotal = product.quantity * product.price;
+                    break;
+                }
+            }
+            if (encontrado === false) {
+                product.quantity = 1;
+                cart.push(product);
+                product.subtotal = product.quantity * product.price;
+            }
+        }
+    }
+    applyPromotionsCart(cart);
+    return cart;
 }
 
 // Exercise 8
 function removeFromCart(id) {
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
+    for (let product of cart) {
+        if (product.id === id) {
+            if (product.quantity > 1) {
+                product.quantity--;
+                product.subtotal = product.quantity * product.price;
+            } else {
+                cart.splice(cart.indexOf(product), 1);
+            }
+            applyPromotionsCart(cart);
+        }
+    }
 }
 
 // Exercise 9
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
+
+    
 }
