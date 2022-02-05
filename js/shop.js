@@ -176,6 +176,21 @@ function removeFromCart(id) {
 // Exercise 9
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
+    document.querySelector('.list').remove();
 
-    
+    const contenedor = document.getElementById('contenedor-list');
+    const list = document.createElement('ul');
+    list.className = 'list';
+ 
+    contenedor.prepend(list);
+
+    for (let product of cart) {
+        const itemCart = document.createElement('li');
+        let textItemCart = `${product.name}: ${product.quantity} - Subtotal: ${product.subtotal}`;
+        if ((product.id === 1 && product.quantity >= 3) || (product.id === 3 && product.quantity >= 10)) {
+            textItemCart = textItemCart + " / Subtotal con descuento: " + product.subtotalWithDiscount;
+        } 
+        itemCart.textContent = textItemCart;
+        list.appendChild(itemCart);
+    }
 }
