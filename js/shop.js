@@ -2,7 +2,7 @@
 var products = [
     {
         id: 1,
-        name: 'cooking oil',
+        name: 'Cooking oil',
         price: 10.5,
         type: 'grocery'
     },
@@ -177,13 +177,10 @@ function removeFromCart(id) {
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
     document.querySelector('.list').remove();
-
     const contenedor = document.getElementById('contenedor-list');
     const list = document.createElement('ul');
     list.className = 'list';
- 
     contenedor.prepend(list);
-
     for (let product of cart) {
         const itemCart = document.createElement('li');
         let textItemCart = `${product.name}: ${product.quantity} - Subtotal: ${product.subtotal}`;

@@ -3,6 +3,28 @@
 body {
     font-family: Poppins;
 }
-#errorPassword, #errorName, #errorPhone {
-    display: none;
+#errorPassword, #errorName, #errorPhone , #errorLastName, #errorMail, #errorAddress {
+    display:none ;
+
+}
+
+.errorMessage {
+    padding: 0.5rem;
+    margin-left: 1rem;
+    color: red;
+    width: 85%;
+    border-radius: .25rem;
+    font-size: 0.75rem;;
+}
+
+.valid {
+    border: solid 2px rgb(29, 173, 29);
+}
+
+.invalid {
+    border: solid 2px red;
+}
+
+input {
+    outline: none;
 }
