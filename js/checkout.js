@@ -96,7 +96,6 @@ const validate = (e) => {
 }
 
 inputs.forEach((input) => {
-	input.addEventListener('keyup', validate);
 	input.addEventListener('blur', validate);
 })
 
